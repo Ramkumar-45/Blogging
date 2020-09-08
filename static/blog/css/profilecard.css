@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+.card{
+    max-width: 360px;
+    overflow-y: auto;
+    transition: 0.3s;
+    overflow-x: hidden;
+    display: flex;
+    overflow-y: hidden;
+    background-color: white;
+}
+.card .card-header{
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 250px;
+}
+.card .card-header .card-blur{
+    width: 100%;
+    transition: 0.3s;
+    height: 130px;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    filter: blur(50px);
+    top: -20px;
+    left: 0;
+    transform: scale(1.2);
+}
+.card .card-header .card-avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    object-fit: cover;
+    transition: 0.3s;
+    object-position: center;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    margin: auto;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%) translateY(-44px);
+}
+.card .card-header .card-name{
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    bottom: 0;
+    transition: 0.3s;
+    transform: translateX(-50%) translateY(-4px);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', Sans-Serif;
+}
+.card .card-section{
+    display: block;
+    animation: fadeIn 1s both;
+    transition: 0.3s;
+}
+.card .card-section .card-title h4{
+    font-family: "Josefin Sans", Sans-Serif;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+.card .card-section h5{
+    font-size: 15px;
+    transition: 0.3s;
+}
+.card .card-section .card-social{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.card .card-section .card-social a{
+    color: #01CD74;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    transition: 0.3s;
+    background-color: rgba(93, 133, 193, 0.2);
+    border-radius: 50%;
+}
+.card .card-section .card-social .web{
+    width: 70px;
+    transition: 0.3s;
+    background-color: transparent;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+
+    -webkit-transform: translatey(40px);
+
+    transform: translateY(90px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

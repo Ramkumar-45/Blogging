@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title_tag }}{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'blog/css/profilecard.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/single.css' %}">
+    <style>
+    .blog-info-middle ul li a .but{
+	    background-color: transparent;
+        color: #fff;
+        border-color: transparent;
+        transition: all 0.4s linear;
+        outline: none;
+        border: none;
+    }
+    .blog-info-middle ul li a .but:hover{
+        color:#01cd74;
+	    opacity:0.9;
+        transition: all 0.4s linear;
+    }
+    </style>
+
+    <!-- Single Post Page -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                <div class="blog-grid-top">
+                    <div class="b-grid-top">
+                        {% if post.profile_picture %}
+                            <div class="blog_info_left_grid">
+                                <a href="single.html">
+                                    <img src="{{ post.profile_picture.url }}" class="img-fluid" alt="">
+                                </a>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                    <h1>{{ post.title }}</h1>
+                    <h6>Author: {{ post.author }}</h6>
+                    <p>{{ post.body|safe }}</p>
+                    {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                            <a class="btn btn-primary read-m" href="{% url 'update' post.id %}" >Update</a>
+                            <a class="btn btn-primary read-m" href="{% url 'delete' post.id %}" >Delete</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                <div class="blog-info-middle" style="position: relative">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="far fa-calendar-alt"></i> {{ post.publish_date }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card mb-3 mt-3" style="">
+                  <div class="card-header">
+                      {% if post.author.profileuser.profile_image %}
+                      <div class="card-blur" style="background-image: url('{{ post.author.profileuser.profile_image.url }}')">
+                          </div>
+                          <img class="card-avatar" src="{{ post.author.profileuser.profile_image.url }}">
+                      {% else %}
+
+                          <div class="card-blur" style="background-image: url('{% static 'blog/images.user.png' %}')">
+                          </div>
+                            <img class="card-avatar" src="{% static 'blog/images/user.png' %}" alt="">
+                      {% endif %}
+                      <h1 class="card-name">{{ post.author.username }}</h1>
+                  </div>
+                    <div class="card-body mb-3">
+                        <div class="card-section">
+                            <div class="card-title">
+                                <h4>About</h4>
+                                <h5>{{ post.author.profileuser.bio }}</h5>
+                            </div>
+                            <div class="card-social">
+                                {% if post.author.profileuser.facebook_url %}
+                                <a href="{{ post.author.profileuser.facebook_url }}">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                {% endif %}
+                            {% if post.author.profileuser.instagram_url %}
+                                <a href="{{ post.author.profileuser.instagram_url }}">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            {% endif %}
+                            {% if post.author.profileuser.linkedIn_url %}
+                                <a href="{{ post.author.profileuser.linkedIn_url }}">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            {% endif %}
+                            {% if post.author.profileuser.website_url %}
+                                <a class="web" href="{{ post.author.profileuser.website_url }}">
+                                    Website
+                                </a>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Single Post Page -->
+
+{% endblock %}

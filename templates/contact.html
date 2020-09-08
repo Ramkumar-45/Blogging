@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link href="{% static 'blog/css/contact.css' %}" rel='stylesheet' type='text/css' />
+
+    <!-- Contact Section -->
+
+	<section class="main-content-w3layouts-agileits">
+		<h3 class="tittle">Contact Admin</h3>
+		<p class="sub text-center">We love to discuss your idea</p>
+        <!-- Message will shown After mail send -->
+            <div class="block">
+                {% if name %}
+                <h6 class="message text-center" style="">Thanks for contact us {{ name }}</h6>
+                <h6 class="message text-center"> We will come back to yo shortly</h6>
+                {% endif %}
+            </div>
+    <!-- Google Map embbed -->
+		<div class="contact-map inner-sec">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15775.775717052054!2d77.51003932855541!3d8.69687500002621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b043e67414b8127%3A0xa7c5f90ce01fb0cd!2sVeeravanallur%2C%20Tamil%20Nadu%20627426!5e0!3m2!1sen!2sin!4v1599236306013!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+		</div>
+    <!-- Admin Detail -->
+		<div class="ad-inf-sec bg-light">
+			<div class="container">
+				<div class="address row">
+
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-4 address-left text-center">
+								<i class="far fa-map"></i>
+							</div>
+							<div class="col-md-8 address-right text-left">
+								<h6>Address</h6>
+								<p> Tirunelveli, Tamilnadu</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-lg-2 address-left text-center">
+                                <i class="far fa-envelope"></i>
+							</div>
+							<div class="col-lg-10 address-right text-left">
+                                {% for detail in admin %}
+                                    <p>Email : {{ detail.email }}</p>
+                                {% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-4 address-left text-center">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="col-md-8 address-right text-left">
+								<h6>Phone</h6>
+								<p>+91 8667585924</p>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <!-- End of Admin Detail -->
+
+    <!-- Contact form -->
+		<div class="container">
+			<div class="contact_grid_right">
+                <h5 class="text-center">Leave your message for admin</h5>
+				<form action="" method="post">
+                    {% csrf_token %}
+					<div class="row contact_left_grid">
+						<div class="col-md-12 con-left">
+							<div class="form-group">
+                                {{ form }}
+							</div>
+                            <input class="form-control" type="submit" value="Submit">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+    <!-- End of Contact form -->
+	</section>
+{% endblock %}

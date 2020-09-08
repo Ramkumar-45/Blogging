@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'blog/css/userpage.css' %}">
+    <div class="container userwrapper">
+        <div class="row">
+            <div class="col-md-4 userpage">
+                <div class="card">
+
+                <!-- Profile Column -->
+                    <div class="card-header">
+                    <!-- Profile Column (Avatar, Name and User Identity)-->
+                        {% if userpage.profile_image %}
+                            <img class="card-avatar" src="{{ userpage.profile_image.url }}">
+                        {% else %}
+                            <img class="card-avatar" src="{% static 'blog/images/user.png' %}" alt="">
+                        {% endif %}
+                        <h1 class="card-name">{{ userpage.user }}
+                            {% if userpage.user.is_active %}
+                                <span class="active"><i class="fas fa-toggle-on"></i></span>
+                            {% else %}
+                                <span class="un-active"><i class="fas fa-toggle-off"></i></span>
+                            {% endif %}</h1>
+                        <h6 class="card-name">
+                            {% if userpage.user.is_superuser %}
+                                Admin
+                            {% else %}
+                                Blogger
+                            {% endif %}
+                        </h6>
+                    <!-- End of Profile Column (Avatar, Name and User Identity)-->
+                    </div>
+                    <!-- Profile Column (User and Admin's Bio's and Links)-->
+                    <div class="card-body">
+                        <div class="card-section">
+                            <div class="card-title">
+                                <h4>About</h4>
+                                <h5>{{ userpage.bio }}</h5>
+                            </div>
+                            {% if userpage.user.email %}
+                                <h6>Email: {{ userpage.user.email }}</h6>
+                            {% endif %}
+                            <div class="card-social">
+                                {% if userpage.facebook_url %}
+                                    <a href="{{ userpage.facebook_url }}">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                {% endif %}
+                                {% if userpage.instagram_url %}
+                                    <a href="{{ userpage.instagram_url }}">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                {% endif %}
+                                {% if userpage.linkedIn_url %}
+                                    <a href="{{ userpage.linkedIn_url }}">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                {% endif %}
+                                {% if userpage.website_url %}
+                                    <a class="web" href="{{ userpage.website_url }}">
+                                        Website
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    <!-- End of Profile Column (User and Admin's Bio's and Links)-->
+                    </div>
+                </div>
+            <!-- End of Profile Column -->
+            </div>
+            <!-- Specific Users Posts Column -->
+            <div class="col-md-8">
+                {% if userposts %}
+                    <div class="row ml-5">
+                    <!-- Post Loops -->
+                        {% for post in userposts %}
+                            <div class="col-md-12 blog-grid-top mb-3">
+                                <div class="b-grid-top">
+                                    <div class="blog_info_left_grid">
+                                        <a href="{% url 'post' post.id %}">
+                                            {% if post.profile_picture %}
+                                                <img src="{{ post.profile_picture.url }}" style="height: 100px;" class="img-fluid" alt="">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <h3>
+                                        <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                                    </h3>
+                                    <h6 class="card-subtitle mb-2 text-muted">Author : {{ post.author }}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ post.body|safe|slice:':50' }}</h6>
+                                    <p><a href="{% url 'post' post.id %}">{{ post.snippet}}</a></p>
+                                </div>
+                                <ul class="blog-icons">
+                                    <li>
+                                        <i class="far fa-clock"></i>{{ post.publish_date }}
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    <!--End of Post Loop-->
+                    </div>
+                {% else %}
+                    <!-- Alternate Message If post unavailable -->
+                    <div class="row h-100">
+                    <div class="text-center col-md-12 align-self-center d-flex flex-column justify-content-center">
+                        <span class="">
+                            <img src="{% static 'blog/images/safebox.png' %}">
+                        </span>
+                        <p>Your folder Empty</p>
+                        <p>click here to <a href="{% url 'addpost' %}">post</a></p>
+                    </div>
+                    <!-- Alternate Message If post unavailable -->
+                {% endif %}
+                </div>
+            <!-- End of Specific User Posts Column -->
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

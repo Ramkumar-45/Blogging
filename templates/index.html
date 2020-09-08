@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="blog-girds-sec">
+                <div class="row">
+                <!-- Blog Posts of All Users -->
+                    {% for post in posts %}
+                        <div class="col-md-12 blog-grid-top">
+                            <div class="b-grid-top">
+                                <div class="blog_info_left_grid">
+                                    <a href="{% url 'post' post.id %}">
+                                        {% if post.profile_picture %}
+                                        <img src="{{ post.profile_picture.url }}" style="height: 100px;" class="img-fluid" alt="">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <h3>
+                                <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                                </h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Author : {{ post.author }}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ post.body|safe|slice:':50' }}</h6>
+
+                            </div>
+                            <ul class="blog-icons">
+                                <li>
+                                    <i class="far fa-clock"></i>{{ post.publish_date }}
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                <!-- End of Blog Posts of All Users -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-3"></div>
+        <!-- Paginated by 10 Posts per page -->
+            <div class="col-md-6 ">
+                <div class="pagination text-center justify-content-center">
+                    <ul class="step-links">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            </li>
+                        {% endif %}
+                         <li class="page-item page-link">
+                             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                         </li>
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <!-- End of Pagination -->
+{% endblock %}

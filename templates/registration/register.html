@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'blog/css/register.css' %}">
+
+    <!-- Registration Page -->
+    <div class="container wrapper-register">
+        <div class="row register-wrap">
+            <div class="col-md-12">
+             <span class="register-form-title">Join to explore your thoughts</span>
+
+                <!-- Registration Form-->
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn btn-block mt-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let password = document.querySelectorAll('input[type=password]')
+        password[0].placeholder = 'Enter Password'
+        password[1].placeholder = 'Confirm Password'
+    </script>
+{% endblock %}

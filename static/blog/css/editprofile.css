@@ -1,0 +1,63 @@
+*{
+    font-family: "Poppins", Sans-Serif;
+}
+ul{
+    list-style: none;
+}
+.wrapper-register{
+
+}
+
+.wrapper-register .register-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form-title {
+      font-size: 24px;
+      color: #333333;
+      line-height: 1.2;
+      text-align: center;
+    font-weight: 600;
+      width: 100%;
+      display: block;
+      padding-bottom: 54px;
+}
+.wrapper-register .register-wrap .form-group{
+    display: block;
+    justify-content: center;
+    margin-top: 20px;
+}
+.wrapper-register .register-wrap .form-control{
+    border: 0px;
+    border-radius: 0px;
+
+    border-bottom: 1px solid #01CD74;
+}
+.wrapper-register .register-wrap .btn{
+    border-radius: 20px;
+    background-color: #01CD74;
+    color: #fff;
+    border: 0px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.wrapper-register .register-wrap .txt1{
+    color: #6874D0;
+    font-weight: 700;
+}
+.wrapper-register .register-wrap .form-group .txt{
+    color: #01CD74;
+    transition: all 0.5s linear;
+}
+@media screen and (max-width: 576px) {
+    .wrapper-register .register-wrap{
+        width: 100%;
+    }
+}
+
+input[type=text],input[type=email],input[type=password]:invalid{
+    border: 1px solid red;
+}

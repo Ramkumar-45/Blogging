@@ -1,0 +1,164 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'blog/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link href="{% static 'blog/css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'blog/css/base.css' %}" rel='stylesheet'>
+	<link href="{% static 'blog/css/style6.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'blog/css/fontawesome-all.css' %}" rel="stylesheet">
+
+    <!-- Google Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+    <title>{% block title %}Blog{% endblock %}</title>
+
+  </head>
+  <body>
+    <!-- Base Template -->
+	<header class="mb-3">
+		<div class="top-bar_sub_w3layouts container-fluid">
+			<div class="row">
+            <!-- Login or Registration Bar -->
+				<div class="col-md-4 logo text-left">
+					<a class="navbar-brand" href="{% url 'home' %}">
+						<i class="fab fa-linode"></i> Weblog</a>
+				</div>
+				<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					{% if user.is_authenticated %}
+                        <span>Welcome Back! {{ user.username }}</span>
+					    <span class="mx-lg-4 mx-md-2  mx-1">
+						<a href="{% url 'logout' %}">
+							<i class="fas fa-lock"></i> Logout </a>
+					    </span>
+					    <span>
+
+					</span>
+                    {% else %}
+                        <span class="mx-lg-4 mx-md-2  mx-1">
+						<a href="{% url 'login' %}">
+							<i class="fas fa-lock"></i> Login </a>
+					    </span>
+					    <span>
+						<a href="{% url 'register' %}">
+							<i class="far fa-user"></i> Register</a>
+					    </span>
+                    {% endif %}
+				</div>
+            <!-- End of Login or Registration -->
+			</div>
+		</div>
+
+    <!-- Navigation Bar -->
+		<div class="header_top" id="home">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'home' %}">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+                    <!-- User Authenticated Navs -->
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+							    aria-expanded="false">
+								My Profile
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#"></a>
+								<a class="dropdown-item" href="{% url 'profile' %}">Edit Profile Settings</a>
+								<div class="dropdown-divider"></div>
+                                {% if user.profileuser.id %}
+                                    <a class="dropdown-item" href="{% url 'editprofile' user.profileuser.id %}">Edit Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'profiledetail' user.profileuser.id %}">View Profile</a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{% url 'createprofile' %}">Create Profile</a>
+                                {% endif %}
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'addpost' %}">Add Post</a>
+						</li>
+
+                        {% endif %}
+                    <!-- End of User Authenticated Navs -->
+                        <li class="nav-item">
+							<a class="nav-link" href="{% url 'contact'%}">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+    <!-- End of Navigation Bar -->
+	</header>
+    {% block content %}
+    {% endblock %}
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center p-3">
+
+					<p>&copy; {% now "Y" %} Weblog. All Rights Reserved | Design by
+						<a href="">Ramkumar</a>
+					</p>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'blog/js/jquery-2.2.3.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.js' %}"></script>
+    	<!-- //js -->
+	<!--/ start-smoth-scrolling -->
+	<script src="{% static 'blog/js/move-top.js' %}"></script>
+	<script src="{% static 'blog/js/easing.js' %}"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+
+	<script>
+		$(document).ready(function () {
+			/*
+				var defaults = {
+			    containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+		});
+	</script>
+	<a href="#home" class="scroll" id="toTop" style="display: block;">
+		<span id="toTopHover" style="opacity: 1;"> </span>
+	</a>
+	<!-- //Custom-JavaScript-File-Links -->
+  </body>
+</html>

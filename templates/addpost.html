@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/addpost.css' %}">
+    <!-- Page will display only if user authenticated -->
+
+    <div class="container wrapper-post">
+        <div class="row post-wrap">
+            <div class="col-md-12">
+                {% if user.is_authenticated %}
+                <h1 class="post-form-title">Add Posts</h1>
+
+                <!-- Add Post form -->
+                <form method="post" class="form-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form }}
+
+                    <input type="submit" value="Post" class="btn btn-block mt-3">
+                </form>
+                <!-- End of post form-->
+                {% else %}
+                    <p>You are not allowed to access. login or register your account to access</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let user = '{{ user.id }}'
+        let name = '{{ user.username }}'
+        document.getElementById('user').value = user
+        let inputs = document.querySelectorAll('input[type=file]')
+        for (let input in inputs){
+            inputs[input].classList += 'form-control'
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Profile Creation for Specific User-->
+    <link rel="stylesheet" href="{% static 'blog/css/editprofile.css' %}">
+    <div class="container wrapper-register">
+        <div class="row register-wrap">
+            <div class="col-md-12">
+             {% if user.is_authenticated %}
+                <h1>Create Your Profile</h1>
+
+                    <!-- Profile Creation Form-->
+                    <form method="post" class="form-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% for field in form %}
+
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                        {{ field.helptext }}
+                        </div>
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                        <input type="submit" value="Create Profile" class="btn btn-info w-25 mt-3">
+                    </form>
+            {% else %}
+                <p>You are not allowed to access. login or register your account to access</p>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let user = '{{ user.username }}'
+        document.getElementById('profileuser').value = user
+        let inputs
+    </script>
+{% endblock %}

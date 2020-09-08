@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+.userpage{
+    height: 100%;
+}
+.userwrapper .userpage .card .card-header{
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem;
+}
+.userwrapper .userpage .card .card-header .card-avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: 0.3s;
+    object-position: center;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    margin: auto;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+}
+
+.userwrapper .userpage .card .card-header .card-name{
+    text-align: center;
+    left: 50%;
+    bottom: 0;
+    margin-top: 15px;
+    transition: 0.3s;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', Sans-Serif;
+}
+.userwrapper .userpage .card .card-header .active{
+    color: #01CD74;
+    width: 10px;
+    height: 10px;
+}
+.userwrapper .userpage .card .card-section .card-title h4{
+    font-family: "Josefin Sans", Sans-Serif;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+.userwrapper .userpage .card .card-section h5{
+    font-size: 15px;
+    transition: 0.3s;
+}
+.userwrapper .userpage .card .card-section .card-social{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.userwrapper .userpage .card .card-section .card-social a{
+    color: #01CD74;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    transition: 0.3s;
+    background-color: rgba(93, 133, 193, 0.2);
+    border-radius: 50%;
+}
+.userwrapper .userpage .card .card-section .card-social .web{
+    width: 70px;
+    transition: 0.3s;
+    background-color: transparent;
+}
+.no-folder{
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
